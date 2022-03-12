@@ -1,8 +1,9 @@
 import os
-import numpy as np
 import sys
 import csv
 from openpyxl import load_workbook
+INPUT_FILE = sys.argv[1] #excel datafile
+OUTPUT_FILE = sys.argv[2] #csv summary file
 
 def read_file(file_name): #reads the excel files - file name comes from files_list. Also has the dictionaries for the specific words you want. You'll need to change this if you want to look at more/different words
     fn = file_name
@@ -56,7 +57,7 @@ def nested_dictionary_csv_writer(proportions_dictionary, numerics_dictionary, fi
 
     #return self.word_dict
 def main():
-    questions_dict, keys_list, cols_counter, percentages_dict = read_file("Name_Agreement_Norming_Data.xlsx")
+    questions_dict, keys_list, cols_counter, percentages_dict = read_file(INPUT_FILE)
     percentages_dict = get_percentages(questions_dict, keys_list, cols_counter, percentages_dict)
-    nested_dictionary_csv_writer(percentages_dict, questions_dict, file_name = "Name Agreement Norming Data Analysis.csv")
+    nested_dictionary_csv_writer(percentages_dict, questions_dict, file_name = OUTPUT_FILE)
 main()
